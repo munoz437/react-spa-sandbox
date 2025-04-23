@@ -11,11 +11,6 @@ This is a single-page application (SPA) developed as part of a technical sandbox
 - Custom Hooks
 - CSS Modules
 
-## 🔧  Instructions# React SPA Sandbox
-
-This is a single-page application (SPA) developed as part of a technical sandbox for a Senior Frontend Developer role. The purpose of this project is to demonstrate frontend development skills using React, including routing, state management, API consumption, and form validation.
-
-
 ## 🔧 Setup Instructions
 
 1. **Clone the repository**
@@ -32,6 +27,6 @@ This is a single-page application (SPA) developed as part of a technical sandbox
    npm run dev
 
 4. **Open in browser**
-   The application will automatically open in your default browser at:
+   The application will automatically open in your default browser
 
 
