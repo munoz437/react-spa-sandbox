@@ -1,0 +1,36 @@
+.users-page {
+    padding: 1rem;
+  }
+  
+  .users-page ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .users-page li {
+    padding: 0.5rem;
+    margin-bottom: 0.3rem;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .users-page li:hover {
+    background-color: #ddd;
+  }
+  
+  .pagination {
+    margin-top: 1rem;
+  }
+  
+  .pagination button {
+    margin-right: 0.5rem;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .pagination button.active {
+    font-weight: bold;
+    background-color: #333;
+    color: #fff;
+  }
+  
