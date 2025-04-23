@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { UserContext } from '../context/UserContext';
+import '../styles/Home.css';
+
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -45,47 +47,87 @@ const Home = () => {
   const ageGroupsData = processAgeGroups(usersWithAge);
 
   return (
-    <div>
-      <h1>Welcome to the React SPA Sandbox!</h1>
+    <div className="dashboard-container">
+      <header className="dashboard-header">
+        <h1 className="dashboard-title">Welcome to the React SPA Sandbox!</h1>
+        <p className="dashboard-subtitle">User Statistics Overview</p>
+      </header>
       
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginTop: '20px' }}>
-        
-        <div style={{ flex: 1, minWidth: '500px', height: '300px' }}>
-          <h2>User Ages</h2>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={usersWithAge}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="age" fill="#8884d8" />
-            </BarChart>
-          </ResponsiveContainer>
+      <div className="charts-grid">
+        <div className="chart-container">
+          <h2 className="chart-title">User Ages</h2>
+          <div className="chart-wrapper">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart 
+                data={usersWithAge}
+                margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                <XAxis 
+                  dataKey="name" 
+                  angle={-45} 
+                  textAnchor="end" 
+                  height={70}
+                  tick={{ fontSize: 12 }}
+                />
+                <YAxis 
+                  label={{ value: 'Age', angle: -90, position: 'insideLeft' }}
+                  tick={{ fontSize: 12 }}
+                />
+                <Tooltip 
+                  contentStyle={{
+                    backgroundColor: '#fff',
+                    borderRadius: '6px',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                  }}
+                />
+                <Bar 
+                  dataKey="age" 
+                  fill="#8884d8" 
+                  radius={[4, 4, 0, 0]}
+                  name="User Age"
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
 
-        <div style={{ flex: 1, minWidth: '300px', height: '300px' }}>
-          <h2>Age Distribution</h2>
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={ageGroupsData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={renderCustomizedLabel}
-                outerRadius={80}
-                dataKey="value"
-              >
-                {ageGroupsData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Pie>
-              <Tooltip 
-                formatter={(value, name) => [`${value} users`, name]}
-              />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
+        <div className="chart-container">
+          <h2 className="chart-title">Age Distribution</h2>
+          <div className="chart-wrapper">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={ageGroupsData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={renderCustomizedLabel}
+                  outerRadius="80%"
+                  innerRadius="60%"
+                  dataKey="value"
+                >
+                  {ageGroupsData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip 
+                  formatter={(value, name) => [`${value} users`, name]}
+                  contentStyle={{
+                    backgroundColor: '#fff',
+                    borderRadius: '6px',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                  }}
+                />
+                <Legend 
+                  layout="horizontal"
+                  verticalAlign="bottom"
+                  align="center"
+                  wrapperStyle={{ paddingTop: '20px' }}
+                />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
     </div>
